@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printContent,
+  #printContent * {
+    visibility: visible;
+  }
+  #printContent {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+@layer utilities {
+  .grid-cols-layout {
+    grid-template-columns: auto 1fr; /* SideNav takes auto width, content takes the remaining space */
+  }
+  .grid-rows-layout {
+    grid-template-rows: auto 1fr; /* TopNav takes auto height, rest is for the content and SideNav */
+  }
+  .top-nav {
+    grid-column: 2 / -1;
+  }
+  .top-nav-mobile {
+    grid-column: 1 / -1;
+  }
+  .side-nav {
+    grid-row: 1 / -1;
+  }
+  .side-nav-mobile {
+    grid-row: 1 / -1; /* Span from the first row to the end on mobile */
+  }
+  .content {
+    grid-column: 2 / -1; /* Span across the second column to the end */
+    grid-row: 2 / -1; /* Span from the second row to the end */
+  }
+  .content-mobile {
+    grid-column: 1 / -1; /* Span across the second column to the end */
+    grid-row: 2 / -1; /* Span from the second row to the end */
+  }
+}
